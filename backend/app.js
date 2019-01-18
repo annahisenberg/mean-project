@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -14,7 +15,8 @@ mongoose.connect('mongodb+srv://annah:6JKXNhbKQ6HcAQiP@cluster0-cae4z.mongodb.ne
     });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/images', express.static(path.join('backend/images')));
 
 //allow other domains to access resources --- CORS
 app.use((req, res, next) => {
